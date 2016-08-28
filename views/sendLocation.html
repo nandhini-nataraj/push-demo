@@ -1,0 +1,82 @@
+
+<!-- This is a static file -->
+<!-- served from your routes in server.js -->
+
+<!-- You might want to try something fancier: -->
+<!-- html/nunjucks docs: http://mozilla.github.io/nunjucks/ -->
+<!-- jade: http://jade-lang.com/ -->
+<!-- haml: http://haml.info/tutorial.html -->
+<!-- hbs(handlebars): http://handlebarsjs.com/expressions.html -->
+
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<html>
+   <link rel="import" href="header.html">
+  <body>
+   <div class="mdl-layout__container"><div class="mdl-layout mdl-js-layout mdl-layout--fixed-header has-drawer is-small-screen is-upgraded" data-upgraded=",MaterialLayout">
+      <!-- The drawer is always open in large screens. The header is always shown,  even in small screens. -->
+   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+      <header class="mdl-layout__header">
+         <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <span class="mdl-layout-title">Notifications...</span>
+            <!-- Add spacer, to align navigation to the right -->
+            <div class="mdl-layout-spacer"></div>
+            <!-- Navigation -->
+            <nav class="mdl-navigation">
+              <a class="mdl-navigation__link" href="/" style="color:gray">Home</a>
+            </nav>
+          </div>
+      </header>
+      <div class="mdl-layout__drawer">
+         <span class="mdl-layout-title">Try out...</span>
+         <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="/send" style="color:gray">Bordcast A Message</a>
+            <a class="mdl-navigation__link" href="/sendandreceive" style="color:gray">Send And Receive</a>
+            <a class="mdl-navigation__link" href="/survey" style="color:gray">Take a Survey</a>
+            <a class="mdl-navigation__link" href="/register" style="color:gray">Check Your Subscriptions</a>    
+         </nav>
+      </div>
+     
+      <main class="mdl-layout__content">
+        <div class="page-content">
+      <form action="/respondMessage" method="post">
+         <input type="hidden" id="message" name="message">
+        <input type="hidden" id="endpoint" name="endpoint">
+        <input type="hidden" id="p256dh" name="p256dh">
+        <input type="hidden" id="auth" name="auth">
+        <p>You received Message the below message...</p><div id="msg"></div>
+        <p>Type in your response and send...</p>
+        <div class="mdl-textfield mdl-js-textfield">
+               <input class="mdl-textfield__input" type="text" id="text1"  name="loc">
+               <label class="mdl-textfield__label" for="text1">Message...</label>
+            </div>
+        <p class="center js-xhr-button-container"><button type="submit" class="xhr-button js-send-push-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect" data-upgraded=",MaterialButton,MaterialRipple">Send<span class="mdl-button__ripple-container"><span class="mdl-ripple is-animating" style="width: 376.977px; height: 376.977px; transform: translate(-50%, -50%) translate(121px, 15px);"></span></span></button></p>
+       
+      </form></div>
+      
+    </main>
+
+     
+     <footer class="mdl-mini-footer">
+               <ul class="mdl-mini-footer__link-list" >
+                  <li><a href="#">Help</a></li>
+                  <li><a href="#">Privacy and Terms</a></li>
+                  <li><a href="#">User Agreement</a></li>
+               </ul>
+            <p>This page must be accessed using HTTPS.</p>
+         </footer>
+    <!-- Your web-app is https, so your scripts need to be too -->
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"
+            integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
+            crossorigin="anonymous"></script>
+    <script src="/sendLocation.js"></script>
+
+</div>
+</div>
+</div>
+  </body>
+   
+</html>
+
+

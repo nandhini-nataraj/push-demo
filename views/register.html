@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<html>
+
+<link rel="manifest" href="manifest.json">
+ <link rel="import" href="header.html">
+ <body>
+<div class="mdl-layout__container"><div class="mdl-layout mdl-js-layout mdl-layout--fixed-header has-drawer is-small-screen is-upgraded" data-upgraded=",MaterialLayout">
+     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+      <header class="mdl-layout__header">
+         <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <span class="mdl-layout-title">Notifications...</span>
+            <!-- Add spacer, to align navigation to the right -->
+            <div class="mdl-layout-spacer"></div>
+            <!-- Navigation -->
+            <nav class="mdl-navigation">
+               <a class="mdl-navigation__link" href="/" style="color:gray">Home</a>
+            </nav>
+          </div>
+      </header>
+      <div class="mdl-layout__drawer">
+         <span class="mdl-layout-title">Try out...</span>
+         <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="/send" style="color:gray">Bordcast A Message</a>
+            <a class="mdl-navigation__link" href="/sendandreceive" style="color:gray">Send And Receive</a>
+            <a class="mdl-navigation__link" href="/survey" style="color:gray">Take a Survey</a>
+            <a class="mdl-navigation__link" href="/register" style="color:gray">Check Your Subscriptions</a>  
+         </nav>
+      </div>
+     
+    <main class="mdl-layout__content">
+      <div class="page-content">
+        <table>
+          <tbody>
+          <tr>
+            <td>
+              <h5>Your subscription to send/receive notifications: </h5>
+              <label><input type="checkbox" class="ios-switch green" id="bus" value="bus" /><div><div></div></div></label>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+    <div id="links">
+      <table>
+        <tbody>
+          <tr>
+            <td><img src="https://cdn.hyperdev.com/us-east-1%3A085b6849-49b0-45a1-91c7-2937810139f5%2Fimportant-announcement.jpg" style="width:70px;"></td>
+            <td><a class="mdl-navigation__link" href="/send">Broadcast a message</a></td>
+          </tr>
+          <tr>
+            <td><img src="https://cdn.hyperdev.com/us-east-1%3A085b6849-49b0-45a1-91c7-2937810139f5%2Fchat-4.jpg" style="width:70px;"></td>
+           <td><a class="mdl-navigation__link"  href="/sendandreceive">Broadcast a query to the group and receive response/responses from the group</a></td>
+            
+          </tr>
+          <tr>
+            <td><img src="https://cdn.hyperdev.com/us-east-1%3A085b6849-49b0-45a1-91c7-2937810139f5%2Fnews-1.jpg" style="width:70px;"></td>
+            <td><a class="mdl-navigation__link" href="">Corporate News***</a> <sub>TBD</sub></td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <table>
+        <tbody>
+          <tr>
+            <td>
+            <h5>Your subscripion to participate in Survey: </h5>
+          <label><input type="checkbox" class="ios-switch green" id="survey" value="survey" /><div><div></div></div></label>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div id="surveylinks">
+      <table>
+        <tbody>
+          <tr>
+            <td><img src="https://cdn.hyperdev.com/us-east-1%3A085b6849-49b0-45a1-91c7-2937810139f5%2Ffeedback.jpg" style="width:70px;"></td>
+            <td><a class="mdl-navigation__link" href="/survey">Survey</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
+    </main>
+
+      <footer class="mdl-mini-footer">
+       <ul class="mdl-mini-footer__link-list" >
+          <li><a href="#">Help</a></li>
+          <li><a href="#">Privacy and Terms</a></li>
+          <li><a href="#">User Agreement</a></li>
+       </ul>
+        <p>This page must be accessed using HTTPS.</p>
+     </footer>
+          <!-- Your web-app is https, so your scripts need to be too -->
+      <script src="/reg.js"></script>
+</div>
+</div>
+</div>
+  </body>
+</html>
