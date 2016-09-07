@@ -67,7 +67,7 @@ app.get("/surveyThankyou", function (request, response)  {
 
 app.post("/sendSurvey", function (request, response)  {
   var msg = request.body.message;
-    sendPush(msg);
+    sendSurveyPush(msg);
     response.sendFile(__dirname + '/views/respondMessage.html');
 });
 
@@ -110,6 +110,28 @@ function sendPush(subString){
   };
 	webpush.setGCMAPIKey(apiKey);
   database.ref('subscriptions/').on('value', function(snapshot) {
+    var i = 0;         
+    snapshot.forEach(function(childSnapshot) {
+    var endpoint = childSnapshot.child("endpoint").val();
+    var subkeys = childSnapshot.child("keys").val();
+    console.log('endpoint : ', endpoint);
+		if (subkeys) {
+		  params.userPublicKey = subkeys.p256dh;
+		  params.userAuth = subkeys.auth;
+		}
+		console.log('params', params);
+		webpush.sendNotification(endpoint, params);
+    });
+});
+}
+
+function sendSurveyPush(subString){
+  var database = firebase.database();
+  var params={
+    payload : subString
+  };
+	webpush.setGCMAPIKey(apiKey);
+  database.ref('survey/').on('value', function(snapshot) {
     var i = 0;         
     snapshot.forEach(function(childSnapshot) {
     var endpoint = childSnapshot.child("endpoint").val();

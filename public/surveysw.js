@@ -23,7 +23,7 @@ self.addEventListener('push', function(event) {
       tag: "request",
       actions: [
         { action: "Yes", "title": "Yes", "icon": "" },
-        { action: "No", "title": "No!", "icon": "" },
+        { action: "No", "title": "No", "icon": "" },
         { action: "neutral", "title": "I dont care!", "icon": "" },
         { action: "reduce", "title": "I vote to reduce their charges!", "icon": "" }
       ]

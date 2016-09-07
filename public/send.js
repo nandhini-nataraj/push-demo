@@ -1,11 +1,15 @@
+'use strict';
+
+$(function(){ 
 var reg;
 var sub;
 var isSubscribed = false;
 var subscribechkbx = document.querySelector('#broadcast');
-
+$("#subsciption").hide();
+$("form").hide();
 // Initialize Firebase
   var config = {
-    apiKey: "AIzaSyB3eV06eStFNvj3tY93yq_6rzE92-zeWAA",
+    apiKey: "AIzaSyB3eV06eStFNvj3tY93yq_6rzE92-subsciptionzeWAA",
     authDomain: "testdb-3625e.firebaseapp.com",
     databaseURL: "https://testdb-3625e.firebaseio.com",
     storageBucket: "testdb-3625e.appspot.com",
@@ -23,11 +27,13 @@ if ('serviceWorker' in navigator) {
         .then(function(subscription) {
           sub = subscription;
           if(!subscription){
+            $("#subsciption").show();
+            $("form").hide();
             return;
           }
           subscribechkbx.checked=true;
           isSubscribed = true;
-          
+          $("form").show();
         });
     });
     
@@ -53,6 +59,8 @@ function subscribe() {
     console.log('Subscribed! Endpoint:', sub.endpoint);
     console.log(sub.toJSON());
     isSubscribed = true;
+    $("#subsciption").hide();
+    $("form").show();
     //saveEndPointInFireBase(sub.endpoint);
     
     saveSubscription(sub.toJSON());
@@ -63,6 +71,8 @@ function unsubscribe() {
   sub.unsubscribe().then(function(event) {
   
     console.log('Unsubscribed!', event);
+    $("#subsciption").show();
+    $("form").hide();
     isSubscribed = false;
   }).catch(function(error) {
     console.log('Error unsubscribing', error);
@@ -79,7 +89,7 @@ function saveSubscription(jsonObj){
   });
   
 }
-
+});
 
 
 

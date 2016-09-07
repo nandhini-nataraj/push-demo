@@ -1,6 +1,5 @@
 'use strict';
 
-$(function(){ 
 $("#links").hide();
 $("#surveylinks").hide();
 
@@ -23,6 +22,7 @@ var surveychbx = document.querySelector('#survey');
 firebase.initializeApp(config);
 
 if ('serviceWorker' in navigator) {
+  
   console.log('Service Worker is supported');
   navigator.serviceWorker.register('/sw.js').then(function(serviceWorkerRegistration) {
     reg = serviceWorkerRegistration;
@@ -33,6 +33,7 @@ if ('serviceWorker' in navigator) {
         .then(function(subscription) {
           sub = subscription;
           if(!subscription){
+            $("#links").hide();
             return;
           }
           subscribechkbx.checked=true;
@@ -45,6 +46,9 @@ if ('serviceWorker' in navigator) {
     return navigator.serviceWorker.ready;
   }).catch(function(error) {
     console.log('Service Worker Error :^(', error);
+    var cv = "Version Info: " + navigator.appVersion;
+    $("links").innerHTML = cv;
+    
   });
   
   navigator.serviceWorker.register('/surveysw.js').then(function(serviceWorkerRegistration) {
@@ -56,6 +60,7 @@ if ('serviceWorker' in navigator) {
         .then(function(subscription) {
           surveysub = subscription;
           if(!subscription){
+            $("#surveylinks").hide();
             return;
           }
           surveychbx.checked=true;
@@ -76,6 +81,7 @@ subscribechkbx.addEventListener('click', function() {
   } else {
     subscribe();
   }
+});
 
   surveychbx.addEventListener('click', function() {
   if (isSurveySubscribed) {
@@ -83,9 +89,6 @@ subscribechkbx.addEventListener('click', function() {
   } else {
     surveysubscribe();
   }
-
-});
-
 });
 
 function subscribe() {
@@ -102,13 +105,11 @@ function subscribe() {
 
 function unsubscribe() {
   sub.unsubscribe().then(function(event) {
-  
     console.log('Unsubscribed!', event);
     isSubscribed = false;
     $("#links").hide();
   }).catch(function(error) {
     console.log('Error unsubscribing', error);
-  
   });
 }
   
@@ -121,42 +122,19 @@ function surveysubscribe() {
     console.log(surveysub.toJSON());
     isSurveySubscribed = true;
     $("#surveylinks").show();
-    saveSubscription(sub.toJSON());
+    saveSurveySubscription(surveysub.toJSON());
+    
   });
 }
 
 function surveyunsubscribe() {
   surveysub.unsubscribe().then(function(event) {
-  
     console.log('Unsubscribed!', event);
     isSurveySubscribed = false;
     $("#surveylinks").hide();
   }).catch(function(error) {
     console.log('Error unsubscribing', error);
-  
   });
-}
-
-
-function saveEndPointInFireBase(subscriptionId){
-  
-
-  // Get a reference to the database service
-  var database = firebase.database();
-
-  var subId = getSubscriptionId(subscriptionId);
-  var totalRecs = 0;
-
-firebase.database().ref('subscriptions/').push({
-    id: subId
-  });
-}
-
-
-function getSubscriptionId(data){
-var pos = data.search("send");
-return data.substring(pos+5);
-return data;
 }
 
 function saveSubscription(jsonObj){
@@ -166,6 +144,14 @@ function saveSubscription(jsonObj){
    endpoint:jsonObj.endpoint,
    keys:jsonObj.keys
   });
-  
 }
-});
+
+function saveSurveySubscription(jsonObj){
+  // Get a reference to the database service
+  var database = firebase.database();
+  firebase.database().ref('survey/').push({
+   endpoint:jsonObj.endpoint,
+   keys:jsonObj.keys
+  });
+}
+

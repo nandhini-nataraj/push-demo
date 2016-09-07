@@ -10,7 +10,7 @@
       <header class="mdl-layout__header">
          <div class="mdl-layout__header-row">
             <!-- Title -->
-            <span class="mdl-layout-title">Notifications...</span>
+            <span class="mdl-layout-title">Push Notifications...</span>
             <!-- Add spacer, to align navigation to the right -->
             <div class="mdl-layout-spacer"></div>
             <!-- Navigation -->
@@ -22,8 +22,8 @@
       <div class="mdl-layout__drawer">
          <span class="mdl-layout-title">Try out...</span>
          <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="/send" style="color:gray">Bordcast A Message</a>
-            <a class="mdl-navigation__link" href="/sendandreceive" style="color:gray">Send And Receive</a>
+            <a class="mdl-navigation__link" href="/send" style="color:gray">TCS Broadcast</a>
+            <a class="mdl-navigation__link" href="/sendandreceive" style="color:gray">Check your Bus location</a>
             <a class="mdl-navigation__link" href="/survey" style="color:gray">Take a Survey</a>
             <a class="mdl-navigation__link" href="/register" style="color:gray">Check Your Subscriptions</a>
          </nav>
@@ -31,22 +31,26 @@
      
       <main class="mdl-layout__content">
         <div class="page-content">
-          <h4>Send and Receive a message</h4>
-          <p> You can send a question/query to All Subscribers and wait for a response from any of subscribers. </p>
-      <div>
-        <label>Your subscription:<input type="checkbox" class="ios-switch green" id="bus" value="bus" /><div><div></div></div></label>
-        <p>Note: You need to be subscribed to receive a response</p>
+          <h4>Check your Bus Location</h4>
+          
+        <div id="subsciption">
+          <h6>You have not subscribed yet! Please subscribe to proceed : </h6>
+          <label><input type="checkbox" class="ios-switch green" id="bus" value="bus" /><div><div></div></div></label>
+       
         </div>
       
+      <div id="form">
        <form action="/sendandreceive" method="post">
+         <h6> You can send a question/query to your co-passengers and wait for a response from any of subscribers. </h6>
         <div class="mdl-textfield mdl-js-textfield">
                <input class="mdl-textfield__input" type="text" id="text1" name="message">
                <label class="mdl-textfield__label" for="text1">Message...</label>
                <input type="hidden" id="sender" name="sender">
             </div>
-        <p class="center js-xhr-button-container"><button type="submit" class="xhr-button js-send-push-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect" data-upgraded=",MaterialButton,MaterialRipple">Send<span class="mdl-button__ripple-container"><span class="mdl-ripple is-animating" style="width: 376.977px; height: 376.977px; transform: translate(-50%, -50%) translate(121px, 15px);"></span></span></button></p>
+        <p class="center js-xhr-button-container"><button type="submit" class="xhr-button js-send-push-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect" data-upgraded=",MaterialButton,MaterialRipple">Send a Message<span class="mdl-button__ripple-container"><span class="mdl-ripple is-animating" style="width: 376.977px; height: 376.977px; transform: translate(-50%, -50%) translate(121px, 15px);"></span></span></button></p>
+         <p>Note: Please wait until you receive a response</p>
       </form>
-      
+      </div>
       </div>
     </main>
 

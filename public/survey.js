@@ -2,7 +2,8 @@ var reg;
 var sub;
 var isSubscribed = false;
 var subscribechkbx = document.querySelector('#survey');
-
+$("#subsciption").hide();
+$("form").hide();
 // Initialize Firebase
   var config = {
     apiKey: "AIzaSyB3eV06eStFNvj3tY93yq_6rzE92-zeWAA",
@@ -23,11 +24,14 @@ if ('serviceWorker' in navigator) {
         .then(function(subscription) {
           sub = subscription;
           if(!subscription){
+            $("#subsciption").show();
+            $("form").hide();
             return;
           }
           subscribechkbx.checked=true;
           isSubscribed = true;
-          
+          $("#subsciption").hide();
+          $("form").show();
         });
     });
     
@@ -56,6 +60,8 @@ function subscribe() {
     //saveEndPointInFireBase(sub.endpoint);
     
     saveSubscription(sub.toJSON());
+    $("#subsciption").hide();
+    $("form").show();
   });
 }
 
@@ -64,6 +70,8 @@ function unsubscribe() {
   
     console.log('Unsubscribed!', event);
     isSubscribed = false;
+    $("#subsciption").show();
+    $("form").hide();
   }).catch(function(error) {
     console.log('Error unsubscribing', error);
   
@@ -73,7 +81,7 @@ function unsubscribe() {
 function saveSubscription(jsonObj){
   // Get a reference to the database service
   var database = firebase.database();
-  firebase.database().ref('subscriptions/').push({
+  firebase.database().ref('survey/').push({
    endpoint:jsonObj.endpoint,
    keys:jsonObj.keys
   });

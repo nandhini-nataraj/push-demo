@@ -4,7 +4,8 @@ var reg;
 var sub;
 var isSubscribed = false;
 var subscribechkbx = document.querySelector('#bus');
-
+$("#subsciption").hide();
+$("form").hide();
 // Initialize Firebase
   var config = {
     apiKey: "AIzaSyB3eV06eStFNvj3tY93yq_6rzE92-zeWAA",
@@ -25,10 +26,13 @@ if ('serviceWorker' in navigator) {
         .then(function(subscription) {
           sub = subscription;
           if(!subscription){
+            $("#subsciption").show();
             return;
           }
           subscribechkbx.checked=true;
           isSubscribed = true;
+          $("#subsciption").hide();
+          $("form").show();
           // SECURITY FLAW.. WRITING ENDPOINT & ENCRYPTION DATA TO FORM. MUST FIND A WAY TO ENCRYPT IT
 document.querySelector("#sender").value=JSON.stringify(subscription.toJSON());
         });
@@ -57,6 +61,8 @@ function subscribe() {
     console.log(sub.toJSON());
     isSubscribed = true;
     saveSubscription(sub.toJSON());
+    $("#subsciption").hide();
+    $("form").show();
   });
 }
 
@@ -65,6 +71,8 @@ function unsubscribe() {
   
     console.log('Unsubscribed!', event);
     isSubscribed = false;
+    $("#subsciption").show();
+    $("form").hide();
   }).catch(function(error) {
     console.log('Error unsubscribing', error);
   
